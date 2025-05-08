@@ -17,12 +17,12 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/gitminer/projects")
 public class ProjectController {
 
-    @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
+    private final RestTemplate restTemplate;
+
     @Autowired
-    RestTemplate restTemplate;
+    public ProjectController(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     @Autowired
     ProjectRepository projectRepository;

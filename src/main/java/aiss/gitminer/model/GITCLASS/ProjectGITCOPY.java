@@ -2,8 +2,8 @@
 package aiss.gitminer.model.GITCLASS;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import aiss.githubminer.model.GitClasses.CommitGITCOPY;
-import aiss.githubminer.model.GitClasses.IssueGITCOPY;
+import aiss.gitminer.model.GITCLASS.CommitGITCOPY;
+import aiss.gitminer.model.GITCLASS.IssueGITCOPY;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
