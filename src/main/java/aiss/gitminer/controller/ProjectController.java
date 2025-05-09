@@ -79,18 +79,34 @@ public class ProjectController {
 
     private Issue mapToLocalIssue(IssueGITCOPY issueGITCOPY) {
         Issue issue = new Issue();
+        List<Comment> commentsL = new java.util.ArrayList<>();
         issue.setId(issueGITCOPY.getId());
         issue.setTitle(issueGITCOPY.getTitle());
         issue.setState(issueGITCOPY.getState());
         issue.setCreatedAt(issueGITCOPY.getCreatedAt());
         issue.setUpdatedAt(issueGITCOPY.getUpdatedAt());
+        issue.setDescription(issueGITCOPY.getDescription());
+        issue.setClosedAt(issueGITCOPY.getClosedAt());
+        issue.setAuthor(mapToLocalUser(issueGITCOPY.getAuthor()));
+        issue.setAssignee(mapToLocalUser(issueGITCOPY.getAssignee()));
+        issue.setVotes(issueGITCOPY.getVotes());
+        for(CommentGITCOPY c:issueGITCOPY.getComments()){
+            Comment n = mapToLocalComment(c);
+            commentsL.add(n);
+        }
+        issue.setComments(commentsL);
+        issue.setLabels(issueGITCOPY.getLabels());
+
         return issue;
     }
 
 
     private User mapToLocalUser(UserGITCOPY gitUser) {
-        User user = new User();
+        if (gitUser == null) {
+            return null;
+        }
 
+        User user = new User();
         user.setId(gitUser.getId());
         user.setUsername(gitUser.getUsername());
         user.setName(gitUser.getName());
@@ -99,6 +115,7 @@ public class ProjectController {
 
         return user;
     }
+
 
     private Comment mapToLocalComment(CommentGITCOPY gitComment) {
         Comment comment = new Comment();
