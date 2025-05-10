@@ -17,7 +17,7 @@ public class Commit {
     @JsonProperty("id")
     private String id;
     @JsonProperty("title")
-    @Column(length = 1000)
+    @Column(length = 2000)
     private String title;
 
 
